@@ -9,9 +9,9 @@ Param(
 if ($phase -eq "Install") { #This will Install the script to a list of remote servers
 	$ServerList = ".\ServerList.txt" # List of servers to modify
 	$Computers = Get-Content $ServerList # Pull that list into memeory
+	$Services = @("Service1", "Service2") # These are the services you'd like to modify
 	foreach($computer in $Computers) {
 		foreach ($ServiceName in $Services) {
-			$Services = @("Service1", "Service2") # These are the services you'd like to modify
 			$reset = "86400" # When to reset the reset counter. 86400 = 1 Day
 			$actions = "restart/60000/restart/60000/run/60000" # The actions to perform
 			$command = "`"Powershell C:\Scripts\ServiceRecovery.ps1 Alert -service $ServiceName`"" # Run Action
